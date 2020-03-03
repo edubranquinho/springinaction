@@ -1,5 +1,6 @@
 package br.com.branquinho.tacocloud.controller;
 
+import br.com.branquinho.tacocloud.repository.OrderRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,11 +12,20 @@ import javax.validation.Valid;
 
 import br.com.branquinho.tacocloud.model.Order;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Slf4j
 @Controller
 @RequestMapping("/orders")
+@SessionAttributes("order")
 public class OrderController {
+
+    private final OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @GetMapping("/current")
     public String orderForm(Model model) {
@@ -24,11 +34,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors erros) {
+    public String processOrder(@Valid Order order, Errors erros, SessionStatus sessionStatus) {
         if(erros.hasErrors()) {
             return "orderForm";
         }
-        log.info("Order submitted: " + order);
+
+        orderRepository.save(order);
+        sessionStatus.setComplete();
         return "redirect:/";
     }
 
