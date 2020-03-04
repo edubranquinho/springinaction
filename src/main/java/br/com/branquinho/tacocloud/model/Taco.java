@@ -15,8 +15,9 @@ import java.util.Objects;
 public class Taco {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "createdat")
     private LocalDate createdAt;
 
     @NotNull
@@ -25,15 +26,10 @@ public class Taco {
 
     @Size(min = 1, message="You must choose at least 1 ingredient")
     @ManyToMany(targetEntity=Ingredient.class)
+    @JoinTable(name="taco_ingredients", joinColumns=
+            {@JoinColumn(name="taco_id")}, inverseJoinColumns=
+            {@JoinColumn(name="ingredient_id")})
     private List<Ingredient> ingredients = new ArrayList<>();
-
-    public void setIngredients(List<String> ingredients) {
-        for (String id : ingredients) {
-            Ingredient ingredient = new Ingredient();
-            ingredient.setId(id);
-            this.ingredients.add(ingredient);
-        }
-    }
 
     @Override
     public boolean equals(Object o) {

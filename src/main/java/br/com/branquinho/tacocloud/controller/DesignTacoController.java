@@ -1,5 +1,7 @@
 package br.com.branquinho.tacocloud.controller;
 
+import br.com.branquinho.tacocloud.jparepository.IngredientJpaRepository;
+import br.com.branquinho.tacocloud.jparepository.TacoJpaRepository;
 import br.com.branquinho.tacocloud.model.Order;
 import br.com.branquinho.tacocloud.repository.IngredientRepository;
 import br.com.branquinho.tacocloud.repository.TacoRepository;
@@ -24,10 +26,10 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("order")
 public class DesignTacoController {
 
-    private final IngredientRepository ingredientRepository;
-    private final TacoRepository tacoRepository;
+    private final IngredientJpaRepository ingredientRepository;
+    private final TacoJpaRepository tacoRepository;
 
-    public DesignTacoController(IngredientRepository ingredientRepository, TacoRepository tacoRepository) {
+    public DesignTacoController(IngredientJpaRepository ingredientRepository, TacoJpaRepository tacoRepository) {
         this.ingredientRepository = ingredientRepository;
         this.tacoRepository = tacoRepository;
     }

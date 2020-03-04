@@ -1,5 +1,6 @@
 package br.com.branquinho.tacocloud.controller;
 
+import br.com.branquinho.tacocloud.jparepository.OrderJpaRepository;
 import br.com.branquinho.tacocloud.repository.OrderRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +22,9 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("order")
 public class OrderController {
 
-    private final OrderRepository orderRepository;
+    private final OrderJpaRepository orderRepository;
 
-    public OrderController(OrderRepository orderRepository) {
+    public OrderController(OrderJpaRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
@@ -35,7 +36,7 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@Valid Order order, Errors erros, SessionStatus sessionStatus) {
-        if(erros.hasErrors()) {
+            if(erros.hasErrors()) {
             return "orderForm";
         }
 
