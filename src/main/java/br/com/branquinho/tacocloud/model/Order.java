@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class Order {
     @Column(name = "placedat")
     private LocalDate placedAt;
     @NotBlank(message="Name is required")
-    private String name;
+    @Column(name = "person_name")
+    private String personName;
     @NotBlank(message="Street is required")
     private String street;
     @NotBlank(message="City is required")
@@ -44,6 +46,9 @@ public class Order {
     @Column(name = "cccvv")
     private String ccCVV;
     @ManyToMany(targetEntity=Taco.class)
+    @JoinTable(name="taco_order_tacos", joinColumns=
+            {@JoinColumn(name="taco_order_id")}, inverseJoinColumns=
+            {@JoinColumn(name="taco_id")})
     private List<Taco> tacos = new ArrayList<>();
 
     public void addDesign(Taco taco) {

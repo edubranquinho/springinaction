@@ -18,7 +18,7 @@ alter table Taco_Ingredients
  add foreign key (ingredient_id) references Ingredient(id);
 create table if not exists Taco_Order (
  id identity,
- name varchar(50) not null,
+ person_name varchar(50) not null,
  street varchar(50) not null,
  city varchar(50) not null,
  state varchar(2) not null,
@@ -29,10 +29,10 @@ create table if not exists Taco_Order (
  placedAt timestamp not null
 );
 create table if not exists Taco_Order_Tacos (
- tacoOrder bigint not null,
- taco bigint not null
+ taco_order_id bigint not null,
+ taco_id bigint not null
 );
 alter table Taco_Order_Tacos
- add foreign key (tacoOrder) references Taco_Order(id);
+ add foreign key (taco_order_id) references Taco_Order(id);
 alter table Taco_Order_Tacos
- add foreign key (taco) references Taco(id);
+ add foreign key (taco_id) references Taco(id);
