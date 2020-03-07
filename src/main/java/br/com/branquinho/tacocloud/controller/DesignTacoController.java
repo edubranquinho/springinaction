@@ -2,23 +2,19 @@ package br.com.branquinho.tacocloud.controller;
 
 import br.com.branquinho.tacocloud.jparepository.IngredientJpaRepository;
 import br.com.branquinho.tacocloud.jparepository.TacoJpaRepository;
+import br.com.branquinho.tacocloud.model.Ingredient;
+import br.com.branquinho.tacocloud.model.Ingredient.Type;
 import br.com.branquinho.tacocloud.model.Order;
-import br.com.branquinho.tacocloud.repository.IngredientRepository;
-import br.com.branquinho.tacocloud.repository.TacoRepository;
+import br.com.branquinho.tacocloud.model.Taco;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.Valid;
-
-import br.com.branquinho.tacocloud.model.Ingredient;
-import br.com.branquinho.tacocloud.model.Ingredient.Type;
-import br.com.branquinho.tacocloud.model.Taco;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
