@@ -1,17 +1,15 @@
 package br.com.branquinho.tacocloud.controller;
 
 import br.com.branquinho.tacocloud.jparepository.OrderJpaRepository;
-import br.com.branquinho.tacocloud.repository.OrderRepository;
+import br.com.branquinho.tacocloud.model.Order;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
-
-import br.com.branquinho.tacocloud.model.Order;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Slf4j
 @Controller
