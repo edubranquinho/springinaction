@@ -1,13 +1,13 @@
 package br.com.branquinho.tacocloud.papoReto;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 
 public class Empresa {
 
     String nome;
-    Collection<Funcionario> funcionarios = new HashSet<>();
+    Collection<Funcionario> funcionarios = new ArrayList<>();
 
     public String getNome() {
         return nome;
